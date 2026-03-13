@@ -1,119 +1,194 @@
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
 }
 
 html,body{
-  width:100%;
-  height:100%;
-  background:#000;
-  overflow:hidden;
-  font-family:Arial,sans-serif;
+width:100%;
+height:100%;
+background:#000;
+overflow:hidden;
+font-family:Arial,sans-serif;
+color:#fff;
 }
 
 /* LAYOUT */
+
 #player-overlay{
-  position:fixed;
-  inset:0;
-  display:flex;
-  background:#000;
+position:fixed;
+inset:0;
+display:flex;
+background:#000;
 }
 
 /* CHANNEL DRAWER */
+
 #channels{
-  position:absolute;
-  top:0;
-  left:0;
-  width:260px;
-  height:100%;
-  background:rgba(10,10,10,.95);
-  color:#fff;
-  z-index:9999;
-  transition:transform .4s ease;
+position:absolute;
+top:0;
+left:0;
+width:260px;
+height:100%;
 
-  overflow-y:auto;
-  overscroll-behavior: contain;
+/* glass effect */
+background:rgba(12,12,12,.92);
+backdrop-filter:blur(14px);
 
-  /* 🔥 HIDE WHITE SCROLLBAR (DESKTOP) */
-  scrollbar-width: none;          /* Firefox */
-  -ms-overflow-style: none;       /* IE / Edge */
+color:#fff;
+z-index:9999;
+
+/* smoother animation */
+transition:transform .35s cubic-bezier(.4,0,.2,1);
+
+overflow-y:auto;
+overscroll-behavior:contain;
+
+/* subtle edge */
+border-right:1px solid rgba(255,255,255,.05);
+
+/* hide scrollbar */
+scrollbar-width:none;
+-ms-overflow-style:none;
 }
+
 #channels::-webkit-scrollbar{
-  width:0;
-  height:0;
-  display:none;                   /* Chrome / Safari */
+width:0;
+height:0;
+display:none;
 }
 
 #channels.hide{
-  transform:translateX(-100%);
+transform:translateX(-100%);
 }
+
+/* SEARCH BAR */
 
 #search{
-  width:100%;
-  padding:10px;
-  border:none;
-  outline:none;
-  background:#111;
-  color:#fff;
+width:100%;
+padding:12px;
+border:none;
+outline:none;
+
+background:#111;
+color:#fff;
+font-size:14px;
+
+border-bottom:1px solid #222;
 }
+
+#search::placeholder{
+color:#777;
+}
+
+/* CHANNEL ITEM */
 
 .channel{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px;
-  border-bottom:1px solid #222;
-  cursor:pointer;
+display:flex;
+align-items:center;
+gap:10px;
+padding:10px;
+
+border-bottom:1px solid #222;
+
+cursor:pointer;
+
+transition:all .18s ease;
 }
+
 .channel:hover{
-  background:#222;
+background:#1f1f1f;
+transform:translateX(4px);
 }
+
+/* channel logos */
 
 .channel img{
-  width:40px;
-  height:25px;
-  object-fit:cover;
+width:40px;
+height:25px;
+object-fit:cover;
+border-radius:6px;
 }
 
+/* LIVE BADGE */
+
 .live-badge{
-  margin-left:auto;
-  font-size:10px;
-  color:red;
-  font-weight:bold;
+margin-left:auto;
+
+font-size:10px;
+font-weight:bold;
+
+background:red;
+color:#fff;
+
+padding:2px 6px;
+border-radius:4px;
 }
 
 /* PLAYER */
+
 #player-wrap{
-  flex:1;
-  width:100%;
-  height:100%;
+flex:1;
+width:100%;
+height:100%;
 }
 
+/* VIDEO */
+
 video{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  background:#000;
-  outline:none;
-  cursor:pointer;
+width:100%;
+height:100%;
+object-fit:contain;
+
+background:#000;
+outline:none;
+
+cursor:pointer;
+
+/* subtle cinematic glow */
+box-shadow:0 0 40px rgba(0,0,0,.8);
 }
 
 /* REMOVE DEFAULT CONTROLS */
+
 video::-webkit-media-controls{
-  display:none!important;
+display:none!important;
 }
 
 :fullscreen video,
 :-webkit-full-screen video{
-  background:#000;
+background:#000;
 }
 
+/* MOBILE OPTIMIZATION */
 
+@media (max-width:700px){
 
+#channels{
+width:220px;
+}
 
+.channel{
+padding:12px;
+}
 
+.channel img{
+width:42px;
+height:26px;
+}
 
+}
 
+/* SMOOTH FADE EDGE (DRAWER) */
 
+#channels:after{
+content:"";
+position:absolute;
+right:-20px;
+top:0;
+width:20px;
+height:100%;
+background:linear-gradient(to right, rgba(0,0,0,.9), transparent);
+pointer-events:none;
+}
