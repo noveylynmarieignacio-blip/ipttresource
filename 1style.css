@@ -104,11 +104,29 @@ transform:translateX(4px);
 
 /* channel logos */
 
-.channel img{
+/* LOGO CONTAINER */
+
+.channel-logo{
 width:40px;
 height:25px;
-object-fit:cover;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:#111;
 border-radius:6px;
+
+overflow:hidden;
+}
+
+/* LOGO IMAGE */
+
+.channel-logo img{
+max-width:100%;
+max-height:100%;
+
+object-fit:contain;
 }
 
 /* LIVE BADGE */
