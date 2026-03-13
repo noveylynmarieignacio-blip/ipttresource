@@ -32,30 +32,24 @@ left:0;
 width:260px;
 height:100%;
 
-/* glass effect */
 background:rgba(12,12,12,.92);
 backdrop-filter:blur(14px);
 
 color:#fff;
 z-index:9999;
 
-/* smoother animation */
 transition:transform .35s cubic-bezier(.4,0,.2,1);
 
 overflow-y:auto;
 overscroll-behavior:contain;
 
-/* subtle edge */
 border-right:1px solid rgba(255,255,255,.05);
 
-/* hide scrollbar */
 scrollbar-width:none;
 -ms-overflow-style:none;
 }
 
 #channels::-webkit-scrollbar{
-width:0;
-height:0;
 display:none;
 }
 
@@ -88,26 +82,30 @@ color:#777;
 display:flex;
 align-items:center;
 gap:10px;
-padding:10px;
-height:45px; /* lock row height */
 
+padding:0 10px; /* remove vertical padding */
+height:48px; /* lock row height */
 
 border-bottom:1px solid #222;
 
 cursor:pointer;
-
 transition:all .18s ease;
+
+flex-shrink:0;
 }
 
 .channel:hover{
 background:#1f1f1f;
 transform:translateX(4px);
 }
+
 /* LOGO CONTAINER */
 
 .channel-logo{
 width:40px;
-height:25px;
+height:26px;
+
+flex:0 0 40px; /* prevent resize */
 
 display:flex;
 align-items:center;
@@ -117,18 +115,26 @@ background:#111;
 border-radius:6px;
 
 overflow:hidden;
-flex:none;
 }
 
 /* LOGO IMAGE */
 
 .channel-logo img{
-height:100%;
-width:auto;
+max-width:100%;
+max-height:100%;
 
 object-fit:contain;
 display:block;
 }
+
+/* CHANNEL NAME */
+
+.channel span{
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
 /* LIVE BADGE */
 
 .live-badge{
@@ -161,10 +167,8 @@ object-fit:contain;
 
 background:#000;
 outline:none;
-
 cursor:pointer;
 
-/* subtle cinematic glow */
 box-shadow:0 0 40px rgba(0,0,0,.8);
 }
 
@@ -179,7 +183,7 @@ display:none!important;
 background:#000;
 }
 
-/* MOBILE OPTIMIZATION */
+/* MOBILE */
 
 @media (max-width:700px){
 
@@ -188,17 +192,19 @@ width:220px;
 }
 
 .channel{
-padding:12px;
+height:50px;
 }
 
-.channel img{
+/* keep same logo system */
+
+.channel-logo{
 width:42px;
-height:26px;
+height:28px;
 }
 
 }
 
-/* SMOOTH FADE EDGE (DRAWER) */
+/* DRAWER EDGE FADE */
 
 #channels:after{
 content:"";
@@ -209,4 +215,4 @@ width:20px;
 height:100%;
 background:linear-gradient(to right, rgba(0,0,0,.9), transparent);
 pointer-events:none;
-}
+  }
