@@ -101,13 +101,12 @@ transform:translateX(4px);
 }
 
 /* LOGO CONTAINER */
-/* LOGO CONTAINER */
 
 .channel-logo{
 width:40px;
-height:25px;
-min-width:40px;
-min-height:25px;
+height:26px;
+
+flex:0 0 40px;
 
 display:flex;
 align-items:center;
@@ -117,17 +116,15 @@ background:#111;
 border-radius:6px;
 
 overflow:hidden;
-flex-shrink:0;
 }
 
 /* LOGO IMAGE */
 
 .channel-logo img{
-width:50%;
-height:50%;
-object-fit:contain;
-object-position:center;
+max-width:50%;
+max-height:50%;
 
+object-fit:contain;
 display:block;
 }
 
