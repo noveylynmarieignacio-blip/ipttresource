@@ -83,12 +83,13 @@ display:flex;
 align-items:center;
 gap:10px;
 
-padding:0 10px; /* remove vertical padding */
-height:48px; /* lock row height */
+padding:0 10px;
+height:48px;
 
 border-bottom:1px solid #222;
 
 cursor:pointer;
+
 transition:all .18s ease;
 
 flex-shrink:0;
@@ -105,7 +106,7 @@ transform:translateX(4px);
 width:40px;
 height:26px;
 
-flex:0 0 40px; /* prevent resize */
+flex:0 0 40px;
 
 display:flex;
 align-items:center;
@@ -156,6 +157,14 @@ border-radius:4px;
 flex:1;
 width:100%;
 height:100%;
+
+transition:margin-left .3s ease;
+}
+
+/* move player when sidebar visible */
+
+#channels:not(.hide) ~ #player-wrap{
+margin-left:260px;
 }
 
 /* VIDEO */
@@ -167,6 +176,7 @@ object-fit:contain;
 
 background:#000;
 outline:none;
+
 cursor:pointer;
 
 box-shadow:0 0 40px rgba(0,0,0,.8);
@@ -183,7 +193,7 @@ display:none!important;
 background:#000;
 }
 
-/* MOBILE */
+/* MOBILE OPTIMIZATION */
 
 @media (max-width:700px){
 
@@ -195,16 +205,20 @@ width:220px;
 height:50px;
 }
 
-/* keep same logo system */
+/* keep logo scaling correct */
 
 .channel-logo{
 width:42px;
 height:28px;
 }
 
+#channels:not(.hide) ~ #player-wrap{
+margin-left:220px;
 }
 
-/* DRAWER EDGE FADE */
+}
+
+/* SMOOTH FADE EDGE */
 
 #channels:after{
 content:"";
@@ -215,4 +229,4 @@ width:20px;
 height:100%;
 background:linear-gradient(to right, rgba(0,0,0,.9), transparent);
 pointer-events:none;
-  }
+}
