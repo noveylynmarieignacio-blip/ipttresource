@@ -13,9 +13,9 @@ function isMobile() {
 }
 
 /* RESIZE */
-function resizeVideo() {
-    if (document.fullscreenElement) {
-        video.style.objectFit = "contain";
+function resizeVideo(isFS=false) {
+    if (isMobile() && innerWidth > innerHeight) {
+        video.style.objectFit = isFS ? "contain" : "cover";
     } else {
         video.style.objectFit = "contain";
     }
